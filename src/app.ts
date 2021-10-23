@@ -25,13 +25,17 @@ app.use(express.json());
 app.use(router);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-
-if (err.message === "token invalid") {
+    if (err.message === "token invalid") {
         return res.status(401).json({
             error: err.message,
         });
     }
 
+    if (err.message === "bad_verification_code") {
+        return res.status(401).json({
+            error: "The code passed is incorrect or expired",
+        });
+    }
 
     return res.status(500).json({
         status: "error",

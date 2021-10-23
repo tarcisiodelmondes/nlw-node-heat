@@ -5,7 +5,8 @@
     "license": "MIT",
     "scripts": {
         "dev": "ts-node-dev src/server.ts",
-        "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
+        "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
+        "build": "tsc build src/* dist/"
     },
     "dependencies": {
         "axios": "^0.23.0",

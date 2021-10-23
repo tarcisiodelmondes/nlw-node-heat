@@ -23,7 +23,7 @@ export class CreateMessageService {
             text: messagesWithDateUser.text,
             user_id: messagesWithDateUser.user_id,
             created_at: messagesWithDateUser.created_at,
-            userId: {
+            user: {
                 name: messagesWithDateUser.userId.name,
                 avatar_url: messagesWithDateUser.userId.avatar_url,
             },

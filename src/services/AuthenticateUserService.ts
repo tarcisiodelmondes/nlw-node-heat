@@ -5,6 +5,7 @@ import { UsersRepositories } from "../repositories/UsersRepositories";
 
 interface IAccessTokenResponse {
     access_token: string;
+    error?: string;
 }
 
 interface IUserResponse {
@@ -31,6 +32,8 @@ export class AuthenticateUserService {
                     Accept: "application/json",
                 },
             });
+
+        if (accessTokenResponse.error) throw new Error("bad_verification_code");
 
         const response = await axios.get<IUserResponse>(
             "https://api.github.com/user",
@@ -73,8 +76,8 @@ export class AuthenticateUserService {
             }
         );
 
-	const {created_at, updated_at, ...userData} = user
+        const { created_at, updated_at, ...userData } = user;
 
-        return { token, user: {...userData} };
+        return { token, user: { ...userData } };
     }
 }

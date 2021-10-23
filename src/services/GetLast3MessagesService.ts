@@ -13,6 +13,17 @@ export class GetLast3MessageService {
             relations: ["userId"],
         });
 
-        return messages;
+        const formattedMessages = messages.map((message) => {
+            return {
+                text: message.text,
+                id: message.id,
+                created_at: message.created_at,
+                user: {
+                    ...message.userId,
+                },
+            };
+        });
+
+        return formattedMessages;
     }
 }
